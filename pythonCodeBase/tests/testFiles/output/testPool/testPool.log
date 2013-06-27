@@ -1,0 +1,73 @@
+########################################################################################################################
+##
+##  samtools view
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools view  -u -S -b  ../testFiles/input/test.sam > ../testFiles/output//testPool//testLib/testLib.samNew
+##
+########################################################################################################################
+[samopen] SAM header is present: 1 sequences.
+
+########################################################################################################################
+##
+##  picardtools AddOrReplaceReadGroups
+##  command: java -jar /mnt/geninf15/work/jetsej/vlpb/programs/picard-tools-1.92/AddOrReplaceReadGroups.jar I=../testFiles/output//testPool//testLib/testLib.bam O=../testFiles/output//testPool//testLib/testLib.bamNew LB=testLib PL=illumina PU=lane SM=samplename
+##
+########################################################################################################################
+[Thu Jun 27 08:55:57 CEST 2013] net.sf.picard.sam.AddOrReplaceReadGroups INPUT=../testFiles/output/testPool/testLib/testLib.bam OUTPUT=../testFiles/output/testPool/testLib/testLib.bamNew RGLB=testLib RGPL=illumina RGPU=lane RGSM=samplename    RGID=1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false
+[Thu Jun 27 08:55:57 CEST 2013] Executing as jetsej@bioinfm12 on Linux 3.1.10-1.16-desktop amd64; OpenJDK 64-Bit Server VM 1.7.0_17-b02; Picard version: 1.92(1464)
+INFO	2013-06-27 08:55:57	AddOrReplaceReadGroups	Created read group ID=1 PL=illumina LB=testLib SM=samplename
+
+[Thu Jun 27 08:55:57 CEST 2013] net.sf.picard.sam.AddOrReplaceReadGroups done. Elapsed time: 0.01 minutes.
+Runtime.totalMemory()=1012400128
+
+########################################################################################################################
+##
+##  samtools sort
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools sort -o ../testFiles/output//testPool//testLib/testLib.bam ../testFiles/output//testPool//testLib/testLib.bamNew > ../testFiles/output//testPool//testLib/testLib.bamNew
+##
+########################################################################################################################
+
+########################################################################################################################
+##
+##  samtools rmdup
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools rmdup ../testFiles/output//testPool//testLib/testLib.bam ../testFiles/output//testPool//testLib/testLib.bamNew
+##
+########################################################################################################################
+[bam_rmdup_core] processing reference SL2.40ch11:22900-24100...
+
+########################################################################################################################
+##
+##  samtools calmd
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools calmd  -AEur  ../testFiles/output//testPool//testLib/testLib.bam ../testFiles/input/smallRefGenome.fa > ../testFiles/output//testPool//testLib/testLib.bamNew
+##
+########################################################################################################################
+
+########################################################################################################################
+##
+##  samtools index
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools index ../testFiles/output//testPool//testLib/testLib.bam
+##
+########################################################################################################################
+
+########################################################################################################################
+##
+##  samtools mpileup
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/samtools mpileup  -d 99999 -A -L 99999  -gf ../testFiles/input/smallRefGenome.fa ../testFiles/output//testPool//testLib/testLib.bam > ../testFiles/output//testPool/testPool.bcv
+##
+########################################################################################################################
+[mpileup] 1 samples in 1 input files
+
+########################################################################################################################
+##
+##  bcftools view
+##  command: /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/bcftools/bcftools view -vcg  -vcg  ../testFiles/output//testPool/testPool.bcv > ../testFiles/output//testPool/testPool.bcvNew
+##
+########################################################################################################################
+[afs] 0:15.000 1:0.000 2:1.000
+
+########################################################################################################################
+##
+##  vcfutils varFilter
+##  command: perl /mnt/geninf15/work/jetsej/vlpb/programs/samtools-0.1.19/bcftools/vcfutils.pl varFilter  -d 4 -W 5 -Q 20  ../testFiles/output//testPool/testPool.vcf > ../testFiles/output//testPool/testPool.vcfNew
+##
+########################################################################################################################
+
